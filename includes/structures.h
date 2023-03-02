@@ -6,7 +6,7 @@
 /*   By: saeby <saeby@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 19:44:22 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/02 21:11:11 by saeby            ###   ########.fr       */
+/*   Updated: 2023/03/02 21:54:55 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,24 @@ typedef struct s_v2
 	size_t	y;
 }				t_v2;
 
+typedef struct s_fv2
+{
+	float	x;
+	float	y;
+}				t_fv2;
+
+typedef struct s_v3
+{
+	size_t	x;
+	size_t	y;
+	size_t	z;
+}				t_v3;
+
 typedef struct s_player
 {
 	t_v2	pos;
-	int		s_dir; // N:78, E:69, S:83, W:87 - starting position
-	int		c_dir; // N:78, E:69, S:83, W:87 - current position
+	int		s_dir; // N:78, E:69, S:83, W:87 - starting direction
+	int		c_dir; // N:78, E:69, S:83, W:87 - current direction
 }				t_player;
 
 typedef struct s_map

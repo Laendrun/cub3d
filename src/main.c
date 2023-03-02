@@ -6,11 +6,12 @@
 /*   By: saeby <saeby@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 19:47:54 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/02 21:26:33 by saeby            ###   ########.fr       */
+/*   Updated: 2023/03/02 22:00:12 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include <stdio.h>
 
 int	main(int ac, char **av)
 {
@@ -42,11 +43,33 @@ int	main(int ac, char **av)
 	return (0);
 }
 
+/*
+void	cast_ray(t_env *env)
+{
+	char	*dst;
+	size_t	i;
+
+	i = env->player.pos.y;
+	if (env->player.c_dir == 'N')
+	{
+		dst = env->addr2 + ((int)(env->player.pos.y - i) * env->line_len2 \
+									+ (int)env->player.pos.x * (env->bpp2 / 8));
+		while (*(unsigned int*)dst != 0xFFFFFF)
+		{
+			dst = env->addr2 + ((int)(env->player.pos.y - i) * env->line_len2 \
+							+ (int)env->player.pos.x * (env->bpp2 / 8));
+			i++;
+		}
+		printf("i: %zu\n", i);
+	}
+}
+*/
 int	render(t_env *env)
 {
 	size_t	x;
 	size_t	y;
 
+	// START MINIMAP
 	y = 0;
 	while (y < env->map.height)
 	{
@@ -63,9 +86,9 @@ int	render(t_env *env)
 		}
 		y++;
 	}
-
 	draw_player(env, (t_v2){env->player.pos.x, env->player.pos.y}, 0x00FF00, 2);
-
+	// END MINIMAP
+	//cast_ray(env);
 	mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);
 	mlx_put_image_to_window(env->mlx, env->win2, env->img2, 0, 0);
 	return (0);

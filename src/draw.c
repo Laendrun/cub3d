@@ -6,7 +6,7 @@
 /*   By: saeby <saeby@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 16:55:43 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/02 21:26:46 by saeby            ###   ########.fr       */
+/*   Updated: 2023/03/02 21:55:00 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,18 +50,44 @@ void	draw_pt(t_env *env, t_v2 v, int color, int win)
 
 void	draw_player(t_env *env, t_v2 v, int color, int win)
 {
-	size_t	i;
-	size_t	j;
+	int	i;
+	int	j;
 
-	i = 0;
-	while (i < PLAYER_SIZE)
+	i = - PLAYER_SIZE / 2;
+	while (i < PLAYER_SIZE / 2)
 	{
-		j = 0;
-		while (j < PLAYER_SIZE)
+		j = - PLAYER_SIZE / 2;
+		while (j < PLAYER_SIZE / 2)
 		{
 			put_px(env, (t_v2){v.x + i, v.y + j}, color, win);
 			j++;
 		}
 		i++;
+	}
+}
+
+void	ft_draw_line(t_env *env, t_v2 s, t_v2 e, int col)
+{
+	float		step;
+	t_v3	v;
+	t_fv2	delta;
+
+	delta.x = e.x - s.x;
+	delta.y = e.y - s.y;
+	if (fabsf(delta.x) >= fabsf(delta.y))
+		step = fabsf(delta.x);
+	else
+		step = fabsf(delta.y);
+	delta.x = delta.x / step;
+	delta.y = delta.y / step;
+	v.x = s.x;
+	v.y = s.y;
+	v.z = 0;
+	while (v.z < step)
+	{
+		put_px(env, (t_v2){v.x, v.y}, col, 2);
+		v.x = v.x + delta.x;
+		v.y = v.y + delta.y;
+		v.z++;
 	}
 }
