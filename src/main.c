@@ -6,7 +6,7 @@
 /*   By: saeby <saeby@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 19:47:54 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/02 18:38:06 by saeby            ###   ########.fr       */
+/*   Updated: 2023/03/02 20:07:21 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,15 @@ int	main(int ac, char **av)
 	env.img = mlx_new_image(env.mlx, WIN_W, WIN_H);
 	env.addr = mlx_get_data_addr(env.img, &env.bpp, \
 									&env.line_len, &env.endian);
+	env.win2 = mlx_new_window(env.mlx, env.map.width * SIZE, env.map.height * SIZE, WIN2_NAME);
+	env.img2 = mlx_new_image(env.mlx, env.map.width * SIZE, env.map.height * SIZE);
+	env.addr2 = mlx_get_data_addr(env.img2, &env.bpp2, \
+									&env.line_len2, &env.endian2);
 	mlx_hook(env.win, 4, 0, mouse_handler, &env);
 	mlx_hook(env.win, 2, 1L << 0, key_handler, &env);
 	mlx_hook(env.win, 17, 1L << 0, close_window, &env);
+	mlx_hook(env.win2, 2, 1L << 0, key_handler, &env);
+	mlx_hook(env.win2, 17, 1L << 0, close_window, &env);
 	mlx_loop_hook(env.mlx, render, &env);
 	mlx_loop(env.mlx);
 	return (0);
@@ -48,11 +54,11 @@ int	render(t_env *env)
 		while (x < env->map.width)
 		{
 			if (env->mapc[x + y * env->map.width] == '1')
-				draw_pt(env, (t_v2){x * SIZE, y * SIZE}, 0xFF0000);
+				draw_pt(env, (t_v2){x * SIZE, y * SIZE}, 0xFFFFFF, 2);
 			if (env->mapc[x + y * env->map.width] == '0')
-				draw_pt(env, (t_v2){x * SIZE, y * SIZE}, 0xFFFFFF);
+				draw_pt(env, (t_v2){x * SIZE, y * SIZE}, env->map.floor_color, 2);
 			if (env->mapc[x + y * env->map.width] == ' ')
-				draw_pt(env, (t_v2){x * SIZE, y * SIZE}, 0x00FF00);
+				draw_pt(env, (t_v2){x * SIZE, y * SIZE}, 0x0, 2);
 			// else
 			// 	draw_pt(env, (t_v2){x * SIZE, y * SIZE}, 0x00FF00);
 			x++;
@@ -60,5 +66,6 @@ int	render(t_env *env)
 		y++;
 	}
 	mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);
+	mlx_put_image_to_window(env->mlx, env->win2, env->img2, 0, 0);
 	return (0);
 }

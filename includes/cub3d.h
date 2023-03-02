@@ -6,16 +6,17 @@
 /*   By: saeby <saeby@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:41:51 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/02 18:33:04 by saeby            ###   ########.fr       */
+/*   Updated: 2023/03/02 20:16:54 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
-# define WIN_W 1920
-# define WIN_H 1080
+# define WIN_W 1280
+# define WIN_H 720
 # define WIN_NAME "Cub3D"
-# define SIZE 50
+# define WIN2_NAME "Cub2D"
+# define SIZE 20
 # define NO 0
 # define SO 1
 # define WE 2
@@ -63,11 +64,17 @@ int		fill_map(t_env *env);
 // -----------------------------------------------------------------------
 char	*set_spaces(char *line, t_env *env);
 void	print_map(t_env *env);
+int		convert_colors(t_env *env);
+
+// -----------------------------------------------------------------------
+// src/check.c
+// -----------------------------------------------------------------------
+int	check_map(t_env *env);
 
 // -----------------------------------------------------------------------
 // src/draw.c
 // -----------------------------------------------------------------------
-void	put_px(t_env *env, t_v2 v, int color);
-void	draw_pt(t_env *env, t_v2 v, int color);
+void	put_px(t_env *env, t_v2 v, int color, int win);
+void	draw_pt(t_env *env, t_v2 v, int color, int win);
 
 #endif

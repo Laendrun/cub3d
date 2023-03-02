@@ -54,11 +54,14 @@ SRC = 	main.c \
 		init.c \
 		helpers.c \
 		draw.c \
+		check.c \
 
 OBJ := $(SRC:%.c=%.o)
+DEP := $(SRC:%.c=%.d)
 
 SRCS = $(addprefix $(SRC_DIR), $(SRC))
 OBJS = $(addprefix $(OBJ_DIR), $(OBJ)) 
+DEPS = $(addprefix $(OBJ_DIR), $(DEP))
 
 CCFLAGS = -Wall -Wextra -Werror
 
@@ -72,8 +75,10 @@ $(NAME): $(SRCS) $(OBJ_DIR) $(OBJS)
 debug: $(SRCS) $(OBJ_DIR) $(OBJS)
 	gcc $(CCFLAGS) -fsanitize=address -g3 $(OBJS) $(LIBS) -o $(NAME)
 
+-include $(DEPS)
+
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
-	@gcc $(CCFLAGS) $(INCS) $< -c -o $@
+	@gcc $(CCFLAGS) -MMD $(INCS) $< -c -o $@
 	@printf "$(_ERASE)\r"
 	@printf "$(_WHITE)$<$(_END)\n"
 	@for i in $$(seq 1 $(CNT)); \
@@ -84,8 +89,9 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@printf "\r$(_MUP)"
 
 clean:
-	@printf "$(_BOLD)$(_WHITE)Removing $(_RED)$(NAME)$(_WHITE) objects$(_END)\n"
+	@printf "$(_BOLD)$(_WHITE)Removing $(_RED)$(NAME)$(_WHITE) objects and dependencies$(_END)\n"
 	@rm -f $(OBJS)
+	@rm -f $(DEPS)
 	@rm -rf $(OBJ_DIR)
 	@printf "$(_BOLD)$(_WHITE)Removing $(_RED)libft$(_WHITE) objects$(_END)\n"
 	@make clean -C $(LIBFT)

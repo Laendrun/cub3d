@@ -6,7 +6,7 @@
 /*   By: saeby <saeby@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 14:33:00 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/02 16:43:26 by saeby            ###   ########.fr       */
+/*   Updated: 2023/03/02 19:13:17 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,22 @@ int	init_cub3d(t_env *env)
 		return (puterr("Error\nUnable to open map: ", env->map.path));
 	env->map.width = 0;
 	env->map.height = 0;
+	env->map.ceiling_color = 0;
+	env->map.floor_color = 0;
 	if (parse_information(env))
 		return (1);
 	if (get_map_information(env))
 		return (1);
-	ft_printf("Map size, W: %u, H: %u\n", env->map.width, env->map.height);
 	env->mapc = ft_calloc((env->map.width * env->map.height), sizeof(char));
 	if (!env->mapc)
 		return (puterr("Error\nMemory allocation error \
 						during map initialization\n", NULL));
 	if (fill_map(env))
 		return (1);
-	print_map(env);
+	if (check_map(env))
+		return (1);
+	if (convert_colors(env))
+		return (1);
 	return (0);
 }
 
