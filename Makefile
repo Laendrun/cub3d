@@ -53,6 +53,7 @@ SRC = 	main.c \
 		parse.c \
 		init.c \
 		helpers.c \
+		draw.c \
 
 OBJ := $(SRC:%.c=%.o)
 

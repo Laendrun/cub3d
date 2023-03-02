@@ -6,7 +6,7 @@
 /*   By: saeby <saeby@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:41:51 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/02 16:42:04 by saeby            ###   ########.fr       */
+/*   Updated: 2023/03/02 18:33:04 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,7 @@
 # define WIN_W 1920
 # define WIN_H 1080
 # define WIN_NAME "Cub3D"
-# define WIN2_W 640
-# define WIN2_H 360
-# define WIN2_NAME "Cub2D"
+# define SIZE 50
 # define NO 0
 # define SO 1
 # define WE 2
@@ -65,5 +63,11 @@ int		fill_map(t_env *env);
 // -----------------------------------------------------------------------
 char	*set_spaces(char *line, t_env *env);
 void	print_map(t_env *env);
+
+// -----------------------------------------------------------------------
+// src/draw.c
+// -----------------------------------------------------------------------
+void	put_px(t_env *env, t_v2 v, int color);
+void	draw_pt(t_env *env, t_v2 v, int color);
 
 #endif

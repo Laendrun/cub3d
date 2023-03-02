@@ -6,7 +6,7 @@
 /*   By: saeby <saeby@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 19:47:54 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/02 16:43:49 by saeby            ###   ########.fr       */
+/*   Updated: 2023/03/02 18:38:06 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,27 @@ int	main(int ac, char **av)
 
 int	render(t_env *env)
 {
+	size_t	x;
+	size_t	y;
+
+	y = 0;
+	while (y < env->map.height)
+	{
+		x = 0;
+		while (x < env->map.width)
+		{
+			if (env->mapc[x + y * env->map.width] == '1')
+				draw_pt(env, (t_v2){x * SIZE, y * SIZE}, 0xFF0000);
+			if (env->mapc[x + y * env->map.width] == '0')
+				draw_pt(env, (t_v2){x * SIZE, y * SIZE}, 0xFFFFFF);
+			if (env->mapc[x + y * env->map.width] == ' ')
+				draw_pt(env, (t_v2){x * SIZE, y * SIZE}, 0x00FF00);
+			// else
+			// 	draw_pt(env, (t_v2){x * SIZE, y * SIZE}, 0x00FF00);
+			x++;
+		}
+		y++;
+	}
 	mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);
 	return (0);
 }
