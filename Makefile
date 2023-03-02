@@ -51,6 +51,8 @@ SRC = 	main.c \
 		hooks.c \
 		errors.c \
 		parse.c \
+		init.c \
+		helpers.c \
 
 OBJ := $(SRC:%.c=%.o)
 

@@ -6,7 +6,7 @@
 /*   By: saeby <saeby@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 19:47:54 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/01 20:54:17 by saeby            ###   ########.fr       */
+/*   Updated: 2023/03/02 16:43:49 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(int ac, char **av)
 		return (puterr("Wrong number of arguments. ", \
 						"Usage ./cub3d <map.cub>"));
 	env.map.path = av[1];
-	if (parse_information(&env))
+	if (init_cub3d(&env))
 		return (1);
 	env.mlx = mlx_init();
 	env.win = mlx_new_window(env.mlx, WIN_W, WIN_H, WIN_NAME);

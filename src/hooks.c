@@ -6,7 +6,7 @@
 /*   By: saeby <saeby@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 19:54:20 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/01 20:53:00 by saeby            ###   ########.fr       */
+/*   Updated: 2023/03/02 16:42:25 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	mouse_handler(int mousecode, int x, int y, t_env *env)
 
 int	close_window(t_env *env)
 {
+	write(2, "Exiting cub3d\n", 15);
 	mlx_destroy_window(env->mlx, env->win);
 	exit(0);
 }
