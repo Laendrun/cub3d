@@ -6,7 +6,7 @@
 /*   By: saeby <saeby@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 14:33:00 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/02 19:13:17 by saeby            ###   ########.fr       */
+/*   Updated: 2023/03/02 20:50:33 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int	init_cub3d(t_env *env)
 	env->map.height = 0;
 	env->map.ceiling_color = 0;
 	env->map.floor_color = 0;
+	env->player.pos.x = 0;
+	env->player.pos.y = 0;
 	if (parse_information(env))
 		return (1);
 	if (get_map_information(env))
@@ -69,5 +71,16 @@ int	get_map_information(t_env *env)
 		line = get_next_line(fd);
 	}
 	close(fd);
+	return (0);
+}
+
+int	set_start(t_v2 v, t_env *env)
+{
+	if (env->player.pos.x != 0 || env->player.pos.y != 0)
+		return (puterr("Error\nMultiple start position found on map.", NULL));
+	env->player.pos.x = v.x * SIZE;
+	env->player.pos.y = v.y * SIZE;
+	env->player.s_dir = env->mapc[v.x + v.y * env->map.width];
+	env->mapc[v.x + v.y * env->map.width] = '0';
 	return (0);
 }

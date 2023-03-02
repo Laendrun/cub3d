@@ -6,7 +6,7 @@
 /*   By: saeby <saeby@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 19:44:22 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/02 19:57:40 by saeby            ###   ########.fr       */
+/*   Updated: 2023/03/02 20:39:50 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,12 @@ typedef struct s_v2
 	size_t	x;
 	size_t	y;
 }				t_v2;
+
+typedef struct s_player
+{
+	t_v2	pos;
+	int		s_dir; // N:78, E:69, S:83, W:87
+}				t_player;
 
 typedef struct s_map
 {
@@ -49,8 +55,9 @@ typedef struct s_env
 	int			bpp2;
 	int			line_len2;
 	int			endian2;
-	t_map		map;
 	char		*mapc;
+	t_map		map;
+	t_player	player;
 }				t_env;
 
 #endif

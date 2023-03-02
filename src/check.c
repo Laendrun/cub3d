@@ -6,7 +6,7 @@
 /*   By: saeby <saeby@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 19:14:28 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/02 19:56:19 by saeby            ###   ########.fr       */
+/*   Updated: 2023/03/02 20:32:20 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,9 @@ int	check_map(t_env *env)
 			if (env->mapc[x + y * env->map.width] == '0')
 				if (space_around((t_v2){x, y}, env))
 					return (puterr("Error\nMap not enclosed in walls.", NULL));
+			if (is_dir(env->mapc[x + y * env->map.width]))
+				if (set_start((t_v2){x, y}, env))
+					return (1);
 			x++;
 		}
 		y++;

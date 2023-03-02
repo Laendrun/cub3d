@@ -6,7 +6,7 @@
 /*   By: saeby <saeby@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 19:47:54 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/02 20:07:21 by saeby            ###   ########.fr       */
+/*   Updated: 2023/03/02 20:51:26 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,13 @@ int	render(t_env *env)
 				draw_pt(env, (t_v2){x * SIZE, y * SIZE}, env->map.floor_color, 2);
 			if (env->mapc[x + y * env->map.width] == ' ')
 				draw_pt(env, (t_v2){x * SIZE, y * SIZE}, 0x0, 2);
-			// else
-			// 	draw_pt(env, (t_v2){x * SIZE, y * SIZE}, 0x00FF00);
 			x++;
 		}
 		y++;
 	}
+
+	draw_pt(env, (t_v2){env->player.pos.x, env->player.pos.y}, 0x00FF00, 2);
+
 	mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);
 	mlx_put_image_to_window(env->mlx, env->win2, env->img2, 0, 0);
 	return (0);
