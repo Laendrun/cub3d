@@ -6,7 +6,7 @@
 /*   By: saeby <saeby@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:41:51 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/02 20:41:18 by saeby            ###   ########.fr       */
+/*   Updated: 2023/03/02 21:27:22 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # define WIN_NAME "Cub3D"
 # define WIN2_NAME "Cub2D"
 # define SIZE 20
+# define PLAYER_SIZE 10
 # define NO 0
 # define SO 1
 # define WE 2
@@ -61,6 +62,14 @@ int		check_line(char *line, int *fd, t_env *env);
 int		fill_map(t_env *env);
 
 // -----------------------------------------------------------------------
+// src/player_move.c
+// -----------------------------------------------------------------------
+void	forward(t_env * env);
+void	backward(t_env * env);
+void	rotate_cc(t_env *env);
+void	rotate_c(t_env *env);
+
+// -----------------------------------------------------------------------
 // src/helpers.c
 // -----------------------------------------------------------------------
 char	*set_spaces(char *line, t_env *env);
@@ -77,6 +86,7 @@ int	check_map(t_env *env);
 // -----------------------------------------------------------------------
 void	put_px(t_env *env, t_v2 v, int color, int win);
 void	draw_pt(t_env *env, t_v2 v, int color, int win);
+void	draw_player(t_env *env, t_v2 v, int color, int win);
 
 // -----------------------------------------------------------------------
 // src/is.c

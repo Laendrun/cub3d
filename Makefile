@@ -55,6 +55,7 @@ SRC = 	main.c \
 		helpers.c \
 		draw.c \
 		check.c \
+		player_move.c \
 		is.c \
 
 OBJ := $(SRC:%.c=%.o)

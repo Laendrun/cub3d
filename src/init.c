@@ -6,7 +6,7 @@
 /*   By: saeby <saeby@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 14:33:00 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/02 20:50:33 by saeby            ###   ########.fr       */
+/*   Updated: 2023/03/02 21:11:30 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ int	set_start(t_v2 v, t_env *env)
 	env->player.pos.x = v.x * SIZE;
 	env->player.pos.y = v.y * SIZE;
 	env->player.s_dir = env->mapc[v.x + v.y * env->map.width];
+	env->player.c_dir = env->mapc[v.x + v.y * env->map.width];
 	env->mapc[v.x + v.y * env->map.width] = '0';
 	return (0);
 }

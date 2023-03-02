@@ -6,7 +6,7 @@
 /*   By: saeby <saeby@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 16:55:43 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/02 20:50:06 by saeby            ###   ########.fr       */
+/*   Updated: 2023/03/02 21:26:46 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,10 @@ void	draw_player(t_env *env, t_v2 v, int color, int win)
 	size_t	j;
 
 	i = 0;
-	while (i < SIZE)
+	while (i < PLAYER_SIZE)
 	{
 		j = 0;
-		while (j < SIZE)
+		while (j < PLAYER_SIZE)
 		{
 			put_px(env, (t_v2){v.x + i, v.y + j}, color, win);
 			j++;

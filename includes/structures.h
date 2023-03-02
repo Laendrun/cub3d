@@ -6,7 +6,7 @@
 /*   By: saeby <saeby@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 19:44:22 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/02 20:39:50 by saeby            ###   ########.fr       */
+/*   Updated: 2023/03/02 21:11:11 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ typedef struct s_v2
 typedef struct s_player
 {
 	t_v2	pos;
-	int		s_dir; // N:78, E:69, S:83, W:87
+	int		s_dir; // N:78, E:69, S:83, W:87 - starting position
+	int		c_dir; // N:78, E:69, S:83, W:87 - current position
 }				t_player;
 
 typedef struct s_map
