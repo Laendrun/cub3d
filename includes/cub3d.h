@@ -6,7 +6,7 @@
 /*   By: saeby <saeby>                              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:41:51 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/03 14:05:56 by saeby            ###   ########.fr       */
+/*   Updated: 2023/03/03 15:13:47 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,19 @@
 int		render(t_env *env);
 
 // -----------------------------------------------------------------------
+// src/cast.c
+// -----------------------------------------------------------------------
+int		touch_wall(t_env *env, t_v2 v);
+void	cast_ray(t_env *env);
+
+// -----------------------------------------------------------------------
 // src/init.c
 // -----------------------------------------------------------------------
 int		init_cub3d(t_env *env);
 int		get_map_information(t_env *env);
 int		set_start(t_v2 v, t_env *env);
+void	fill_pt(t_env *env, t_v2 v, int color);
+int		init_minimap(t_env *env);
 
 // -----------------------------------------------------------------------
 // src/hooks.c
@@ -91,6 +99,8 @@ void	draw_pt(t_env *env, t_v2 v, int color, int win);
 void	draw_player(t_env *env, t_v2 v, int color, int win);
 void	draw_floor(t_env *env);
 void	draw_ceiling(t_env *env);
+void	ft_draw_line(t_env *env, t_v4 v4, int col, int win);
+//void	ft_draw_line(t_env *env, t_v2 s, t_v2 e, int col);
 
 // -----------------------------------------------------------------------
 // src/is.c

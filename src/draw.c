@@ -6,7 +6,7 @@
 /*   By: saeby <saeby>                              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 16:55:43 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/02 22:38:06 by saeby            ###   ########.fr       */
+/*   Updated: 2023/03/03 15:13:30 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,37 @@ void	draw_player(t_env *env, t_v2 v, int color, int win)
 	}
 }
 
-void	ft_draw_line(t_env *env, t_v2 s, t_v2 e, int col)
+void	ft_draw_line(t_env *env, t_v4 v4, int col, int win)
+{
+	float	step;
+	t_v3	v;
+	t_v2	delta;
+
+	delta.x = v4.c - v4.a;
+	delta.y = v4.d - v4.b;
+	if (fabsf(delta.x) >= fabsf(delta.y))
+		step = fabsf(delta.x);
+	else
+		step = fabsf(delta.y);
+	delta.x = delta.x / step;
+	delta.y = delta.y / step;
+	v.x = v4.a;
+	v.y = v4.b;
+	v.z = 0;
+	while (v.z < step)
+	{
+		put_px(env, (t_v2){v.x, v.y}, col, win);
+		v.x = v.x + delta.x;
+		v.y = v.y + delta.y;
+		v.z++;
+	}
+}
+
+/*void	ft_draw_line(t_env *env, t_v2 s, t_v2 e, int col)
 {
 	float		step;
 	t_v3	v;
-	t_fv2	delta;
+	t_v2	delta;
 
 	delta.x = e.x - s.x;
 	delta.y = e.y - s.y;
@@ -90,7 +116,7 @@ void	ft_draw_line(t_env *env, t_v2 s, t_v2 e, int col)
 		v.y = v.y + delta.y;
 		v.z++;
 	}
-}
+}*/
 
 void	draw_floor(t_env *env)
 {

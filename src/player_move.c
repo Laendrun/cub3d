@@ -6,7 +6,7 @@
 /*   By: saeby <saeby>                              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 21:11:40 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/03 14:14:02 by saeby            ###   ########.fr       */
+/*   Updated: 2023/03/03 15:32:01 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	player_touch_wall(t_env *env, int x, int y)
 		j = - PLAYER_SIZE / 2;
 		while (j < PLAYER_SIZE / 2)
 		{
-			if (env->minimap.px[(env->player.pos.x + i + x) + (env->player.pos.y + j + y) * env->minimap.mm_width] == WALL_COLOR)
+			if (env->minimap.px[(int)((env->player.pos.x + i + x) + (env->player.pos.y + j + y) * env->minimap.mm_width)] == WALL_COLOR)
 				return (1);
 			j++;
 		}
@@ -51,13 +51,13 @@ void	forward(t_env * env)
 
 void	backward(t_env *env)
 {
-	if (env->player.c_dir == 'N')
+	if (env->player.c_dir == 'N' && !player_touch_wall(env, 0, 1))
 		env->player.pos.y++;
-	else if (env->player.c_dir == 'S')
+	else if (env->player.c_dir == 'S' && !player_touch_wall(env, 0, -1))
 		env->player.pos.y--;
-	else if (env->player.c_dir == 'E')
+	else if (env->player.c_dir == 'E' && !player_touch_wall(env, -1, 0))
 		env->player.pos.x--;
-	else if (env->player.c_dir == 'W')
+	else if (env->player.c_dir == 'W' && !player_touch_wall(env, 1, 0))
 		env->player.pos.x++;
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saeby <saeby@student.42.fr>                +#+  +:+       +#+        */
+/*   By: saeby <saeby>                              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 19:14:28 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/02 20:32:20 by saeby            ###   ########.fr       */
+/*   Updated: 2023/03/03 14:38:07 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,26 +20,26 @@ static int	space_around(t_v2 v, t_env *env)
 	if (v.x == 0)
 	{
 		// UP DOWN RIGHT
-		if (env->mapc[v.x + (v.y - 1) * env->map.width] == ' ' || \
-			env->mapc[v.x + (v.y + 1) * env->map.width] == ' ' || \
-			env->mapc[(v.x + 1) + v.y * env->map.width] == ' ')
+		if (env->mapc[(int)(v.x + (v.y - 1) * env->map.width)] == ' ' || \
+			env->mapc[(int)(v.x + (v.y + 1) * env->map.width)] == ' ' || \
+			env->mapc[(int)((v.x + 1) + v.y * env->map.width)] == ' ')
 			return (1);
 	}
 	else if (v.x == env->map.width - 1)
 	{
 		// UP DOWN LEFT
-		if (env->mapc[v.x + (v.y - 1) * env->map.width] == ' ' || \
-			env->mapc[v.x + (v.y + 1) * env->map.width] == ' ' || \
-			env->mapc[(v.x - 1) + v.y * env->map.width] == ' ')
+		if (env->mapc[(int)(v.x + (v.y - 1) * env->map.width)] == ' ' || \
+			env->mapc[(int)(v.x + (v.y + 1) * env->map.width)] == ' ' || \
+			env->mapc[(int)((v.x - 1) + v.y * env->map.width)] == ' ')
 			return (1);
 	}
 	else
 	{
 		// UP DOWN LEFT RIGHT
-		if (env->mapc[v.x + (v.y - 1) * env->map.width] == ' ' || \
-			env->mapc[v.x + (v.y + 1) * env->map.width] == ' ' || \
-			env->mapc[(v.x - 1) + v.y * env->map.width] == ' ' || \
-			env->mapc[(v.x + 1) + v.y * env->map.width] == ' ')
+		if (env->mapc[(int)(v.x + (v.y - 1) * env->map.width)] == ' ' || \
+			env->mapc[(int)(v.x + (v.y + 1) * env->map.width)] == ' ' || \
+			env->mapc[(int)((v.x - 1) + v.y * env->map.width)] == ' ' || \
+			env->mapc[(int)((v.x + 1) + v.y * env->map.width)] == ' ')
 			return (1);
 	}
 	return (0);

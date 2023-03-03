@@ -6,7 +6,7 @@
 /*   By: saeby <saeby>                              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 19:44:22 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/03 13:41:14 by saeby            ###   ########.fr       */
+/*   Updated: 2023/03/03 15:10:44 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,24 @@
 
 typedef struct s_v2
 {
-	size_t	x;
-	size_t	y;
-}				t_v2;
-
-typedef struct s_fv2
-{
 	float	x;
 	float	y;
-}				t_fv2;
+}				t_v2;
 
 typedef struct s_v3
 {
-	size_t	x;
-	size_t	y;
-	size_t	z;
+	float	x;
+	float	y;
+	float	z;
 }				t_v3;
+
+typedef struct s_v4
+{
+	float	a;
+	float	b;
+	float	c;
+	float	d;
+}				t_v4;
 
 typedef struct s_player
 {
@@ -78,6 +80,7 @@ typedef struct s_env
 	int			line_len2;
 	int			endian2;
 	char		*mapc;
+	float		dist;
 	t_map		map;
 	t_minimap	minimap;
 	t_player	player;

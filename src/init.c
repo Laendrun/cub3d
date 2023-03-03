@@ -6,7 +6,7 @@
 /*   By: saeby <saeby>                              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 14:33:00 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/03 14:06:17 by saeby            ###   ########.fr       */
+/*   Updated: 2023/03/03 14:36:45 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	fill_pt(t_env *env, t_v2 v, int color)
 		j = 0;
 		while (j < SIZE)
 		{
-			env->minimap.px[(v.x + i) + (v.y + j) * (env->map.width * SIZE)] = color;
+			env->minimap.px[(int)((v.x + i) + (v.y + j) * (env->map.width * SIZE))] = color;
 			j++;
 		}
 		i++;
@@ -133,8 +133,8 @@ int	set_start(t_v2 v, t_env *env)
 		return (puterr("Error\nMultiple start position found on map.", NULL));
 	env->player.pos.x = v.x * SIZE;
 	env->player.pos.y = v.y * SIZE;
-	env->player.s_dir = env->mapc[v.x + v.y * env->map.width];
-	env->player.c_dir = env->mapc[v.x + v.y * env->map.width];
-	env->mapc[v.x + v.y * env->map.width] = '0';
+	env->player.s_dir = env->mapc[(int)(v.x + v.y * env->map.width)];
+	env->player.c_dir = env->mapc[(int)(v.x + v.y * env->map.width)];
+	env->mapc[(int)(v.x + v.y * env->map.width)] = '0';
 	return (0);
 }
