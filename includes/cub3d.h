@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saeby <saeby@student.42.fr>                +#+  +:+       +#+        */
+/*   By: saeby <saeby>                              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:41:51 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/02 21:51:43 by saeby            ###   ########.fr       */
+/*   Updated: 2023/03/03 14:05:56 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define EA 3
 # define F 4
 # define C 5
+# define WALL_COLOR 0xFFFFFF
 # include <math.h>
 # include "libft.h"
 # include "mlx.h"
@@ -88,6 +89,8 @@ int	check_map(t_env *env);
 void	put_px(t_env *env, t_v2 v, int color, int win);
 void	draw_pt(t_env *env, t_v2 v, int color, int win);
 void	draw_player(t_env *env, t_v2 v, int color, int win);
+void	draw_floor(t_env *env);
+void	draw_ceiling(t_env *env);
 
 // -----------------------------------------------------------------------
 // src/is.c

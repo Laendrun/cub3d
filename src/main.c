@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saeby <saeby@student.42.fr>                +#+  +:+       +#+        */
+/*   By: saeby <saeby>                              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 19:47:54 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/02 22:00:12 by saeby            ###   ########.fr       */
+/*   Updated: 2023/03/03 13:53:42 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,45 +43,30 @@ int	main(int ac, char **av)
 	return (0);
 }
 
-/*
 void	cast_ray(t_env *env)
 {
-	char	*dst;
 	size_t	i;
 
-	i = env->player.pos.y;
+	i = env->player.pos.y / SIZE;
 	if (env->player.c_dir == 'N')
 	{
-		dst = env->addr2 + ((int)(env->player.pos.y - i) * env->line_len2 \
-									+ (int)env->player.pos.x * (env->bpp2 / 8));
-		while (*(unsigned int*)dst != 0xFFFFFF)
-		{
-			dst = env->addr2 + ((int)(env->player.pos.y - i) * env->line_len2 \
-							+ (int)env->player.pos.x * (env->bpp2 / 8));
-			i++;
-		}
 		printf("i: %zu\n", i);
 	}
 }
-*/
+
 int	render(t_env *env)
 {
-	size_t	x;
-	size_t	y;
+	int	x;
+	int	y;
 
 	// START MINIMAP
 	y = 0;
-	while (y < env->map.height)
+	while (y < env->minimap.mm_height)
 	{
 		x = 0;
-		while (x < env->map.width)
+		while (x < env->minimap.mm_width)
 		{
-			if (env->mapc[x + y * env->map.width] == '1')
-				draw_pt(env, (t_v2){x * SIZE, y * SIZE}, 0xFFFFFF, 2);
-			if (env->mapc[x + y * env->map.width] == '0')
-				draw_pt(env, (t_v2){x * SIZE, y * SIZE}, env->map.floor_color, 2);
-			if (env->mapc[x + y * env->map.width] == ' ')
-				draw_pt(env, (t_v2){x * SIZE, y * SIZE}, 0x0, 2);
+			put_px(env, (t_v2){x, y}, env->minimap.px[x + y * env->minimap.mm_width], 2);
 			x++;
 		}
 		y++;
@@ -89,6 +74,8 @@ int	render(t_env *env)
 	draw_player(env, (t_v2){env->player.pos.x, env->player.pos.y}, 0x00FF00, 2);
 	// END MINIMAP
 	//cast_ray(env);
+	draw_floor(env);
+	draw_ceiling(env);
 	mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);
 	mlx_put_image_to_window(env->mlx, env->win2, env->img2, 0, 0);
 	return (0);

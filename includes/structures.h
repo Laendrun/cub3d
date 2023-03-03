@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saeby <saeby@student.42.fr>                +#+  +:+       +#+        */
+/*   By: saeby <saeby>                              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 19:44:22 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/02 21:54:55 by saeby            ###   ########.fr       */
+/*   Updated: 2023/03/03 13:41:14 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,14 @@ typedef struct s_map
 	size_t		height;
 }				t_map;
 
+typedef struct s_minimap
+{
+	int			*px;
+	int			mm_width;
+	int			mm_height;
+	int			size;
+}				t_minimap;
+
 typedef struct s_env
 {
 	void		*mlx;
@@ -71,6 +79,7 @@ typedef struct s_env
 	int			endian2;
 	char		*mapc;
 	t_map		map;
+	t_minimap	minimap;
 	t_player	player;
 }				t_env;
 

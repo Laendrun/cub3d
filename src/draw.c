@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saeby <saeby@student.42.fr>                +#+  +:+       +#+        */
+/*   By: saeby <saeby>                              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 16:55:43 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/02 21:55:00 by saeby            ###   ########.fr       */
+/*   Updated: 2023/03/02 22:38:06 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,41 @@ void	ft_draw_line(t_env *env, t_v2 s, t_v2 e, int col)
 		v.x = v.x + delta.x;
 		v.y = v.y + delta.y;
 		v.z++;
+	}
+}
+
+void	draw_floor(t_env *env)
+{
+	size_t	x;
+	size_t	y;
+
+	y = WIN_H / 2;
+	while (y < WIN_H)
+	{
+		x = 0;
+		while (x < WIN_W)
+		{
+			put_px(env, (t_v2){x, y}, env->map.floor_color, 1);
+			x++;
+		}
+		y++;
+	}
+}
+
+void	draw_ceiling(t_env *env)
+{
+	size_t	x;
+	size_t	y;
+
+	y = 0;
+	while (y < WIN_H / 2)
+	{
+		x = 0;
+		while (x < WIN_W)
+		{
+			put_px(env, (t_v2){x, y}, env->map.ceiling_color, 1);
+			x++;
+		}
+		y++;
 	}
 }
