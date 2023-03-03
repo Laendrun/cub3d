@@ -58,6 +58,7 @@ SRC = 	main.c \
 		player_move.c \
 		is.c \
 		cast.c \
+		test.c \
 
 OBJ := $(SRC:%.c=%.o)
 DEP := $(SRC:%.c=%.d)

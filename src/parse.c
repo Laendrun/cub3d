@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saeby <saeby@student.42.fr>                +#+  +:+       +#+        */
+/*   By: saeby <saeby>                              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 20:24:14 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/02 16:51:45 by saeby            ###   ########.fr       */
+/*   Updated: 2023/03/03 18:50:29 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+# include <stdio.h>
 
 int	get_color(int dir, char *line, t_env *env)
 {
@@ -100,15 +101,15 @@ int	parse_information(t_env *env)
 
 int	check_line(char *line, int *fd, t_env *env)
 {
+	(void) fd;
 	while (*line)
 	{
 		if (!(*line == '0' || *line == '1' || *line == 'N' || \
 			*line == 'S' || *line == 'W' || *line == 'E' || *line == ' '))
 		{
-			free(line);
-			close(*fd);
-			return (puterr("Error\nParsing: map contains \
-						unauthorized characters.", NULL));
+			//free(line);
+			//close(*fd);
+			return (puterr("Error\nParsing: map contains unauthorized characters.", NULL));
 		}
 		if (ft_strlen(line) >= env->map.width)
 			env->map.width = ft_strlen(line);

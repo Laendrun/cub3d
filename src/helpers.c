@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   helpers.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saeby <saeby@student.42.fr>                +#+  +:+       +#+        */
+/*   By: saeby <saeby>                              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 14:57:38 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/02 18:56:41 by saeby            ###   ########.fr       */
+/*   Updated: 2023/03/03 17:55:35 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,9 @@ int	convert_colors(t_env *env)
 	free(tmp);
 	env->map.ceiling_color = (comp[0] << 16) | (comp[1] << 8) | comp[2];
 	return (0);
+}
+
+float	distance(t_v2 player, t_v2 wall)
+{
+	return (sqrt(pow((player.x - wall.x), 2) + pow((player.y - wall.y), 2)));
 }

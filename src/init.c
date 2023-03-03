@@ -6,7 +6,7 @@
 /*   By: saeby <saeby>                              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 14:33:00 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/03 14:36:45 by saeby            ###   ########.fr       */
+/*   Updated: 2023/03/03 18:48:55 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,5 +136,13 @@ int	set_start(t_v2 v, t_env *env)
 	env->player.s_dir = env->mapc[(int)(v.x + v.y * env->map.width)];
 	env->player.c_dir = env->mapc[(int)(v.x + v.y * env->map.width)];
 	env->mapc[(int)(v.x + v.y * env->map.width)] = '0';
+	if (env->player.c_dir == 'N')
+		env->player.c_angle = 270;
+	else if (env->player.c_dir == 'E')
+		env->player.c_angle = 0;
+	else if (env->player.c_dir == 'S')
+		env->player.c_angle = 90;
+	else if (env->player.c_dir == 'W')
+		env->player.c_angle = 180;
 	return (0);
 }

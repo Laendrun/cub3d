@@ -6,7 +6,7 @@
 /*   By: saeby <saeby>                              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 19:47:54 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/03 15:20:01 by saeby            ###   ########.fr       */
+/*   Updated: 2023/03/03 17:42:59 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,19 @@ int	render(t_env *env)
 		while (++x < env->minimap.mm_width)
 			put_px(env, (t_v2){x, y}, env->minimap.px[x + y * env->minimap.mm_width], 2);
 	}
-	draw_player(env, (t_v2){env->player.pos.x, env->player.pos.y}, 0x00FF00, 2);
 	// END MINIMAP
-	cast_ray(env); // casting a single ray as proof of concept
+	/* cast_ray(env); // casting a single ray as proof of concept
 	// the single ray is casted from the center of the view of the player, so draw the line in the center of the 3D scene
 	int height = WIN_H * SIZE / 2;
 	int f_h = height / env->dist;
-	ft_draw_line(env, (t_v4){WIN_W / 2, (WIN_H / 2) - (f_h / 2), WIN_W / 2, (WIN_H / 2) + (f_h / 2)}, WALL_COLOR, 1);
+	int i = -5;
+	while (i <= 5)
+	{
+		ft_draw_line(env, (t_v4){WIN_W / 2 + i, (WIN_H / 2) - (f_h / 2), WIN_W / 2 + i, (WIN_H / 2) + (f_h / 2)}, WALL_COLOR, 1);
+		i++;
+	}*/
+	ray_casting(env);
+	draw_player(env, (t_v2){env->player.pos.x, env->player.pos.y}, 0x00FF00, 2);
 	mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);
 	mlx_put_image_to_window(env->mlx, env->win2, env->img2, 0, 0);
 	return (0);

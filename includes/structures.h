@@ -6,7 +6,7 @@
 /*   By: saeby <saeby>                              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 19:44:22 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/03 15:10:44 by saeby            ###   ########.fr       */
+/*   Updated: 2023/03/03 16:19:01 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct s_player
 	t_v2	pos;
 	int		s_dir; // N:78, E:69, S:83, W:87 - starting direction
 	int		c_dir; // N:78, E:69, S:83, W:87 - current direction
+	float	c_angle;
 }				t_player;
 
 typedef struct s_map

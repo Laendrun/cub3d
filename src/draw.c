@@ -6,7 +6,7 @@
 /*   By: saeby <saeby>                              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 16:55:43 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/03 15:13:30 by saeby            ###   ########.fr       */
+/*   Updated: 2023/03/03 17:30:53 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ void	draw_pt(t_env *env, t_v2 v, int color, int win)
 
 void	draw_player(t_env *env, t_v2 v, int color, int win)
 {
-	int	i;
-	int	j;
+	float	i;
+	float	j;
 
 	i = - PLAYER_SIZE / 2;
 	while (i < PLAYER_SIZE / 2)

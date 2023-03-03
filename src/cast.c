@@ -6,7 +6,7 @@
 /*   By: saeby <saeby>                              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 14:20:32 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/03 15:15:18 by saeby            ###   ########.fr       */
+/*   Updated: 2023/03/03 17:42:17 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,14 @@
 int	touch_wall(t_env *env, t_v2 v)
 {
 	if (env->minimap.px[(int)(v.x + v.y * env->minimap.mm_width)] == WALL_COLOR)
+		return (1);
+	if (env->minimap.px[(int)((v.x - 1) + v.y * env->minimap.mm_width)] == WALL_COLOR)
+		return (1);
+	if (env->minimap.px[(int)((v.x + 1) + v.y * env->minimap.mm_width)] == WALL_COLOR)
+		return (1);
+	if (env->minimap.px[(int)(v.x + (v.y - 1) * env->minimap.mm_width)] == WALL_COLOR)
+		return (1);
+	if (env->minimap.px[(int)(v.x + (v.y + 1) * env->minimap.mm_width)] == WALL_COLOR)
 		return (1);
 	return (0);
 }
@@ -34,7 +42,7 @@ void	cast_ray(t_env *env)
 	i = 0;
 	if (env->player.c_dir == 'N')
 	{
-		while (!touch_wall(env, (t_v2){env->player.pos.x, env->player.pos.y - i}))
+		while (!touch_wall(env, (t_v2){env->player.pos.x, env->player.pos.y - i}) && distance(env->player.pos, (t_v2){env->player.pos.x, env->player.pos.y - i}) < env->minimap.mm_height / 2)
 			i++;
 		w_p = (t_v2){env->player.pos.x, env->player.pos.y - i};
 		ft_draw_line(env, (t_v4){env->player.pos.x, env->player.pos.y, w_p.x, w_p.y}, 0xFF00FF, 2);

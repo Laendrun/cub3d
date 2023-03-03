@@ -6,18 +6,23 @@
 /*   By: saeby <saeby>                              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:41:51 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/03 15:13:47 by saeby            ###   ########.fr       */
+/*   Updated: 2023/03/03 18:09:17 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
-# define WIN_W 1280
-# define WIN_H 720
+# include <math.h>
+# include "libft.h"
+# include "mlx.h"
+# include "structures.h"
+# define WIN_W 640
+# define WIN_H 480
 # define WIN_NAME "Cub3D"
 # define WIN2_NAME "Cub2D"
-# define SIZE 25
-# define PLAYER_SIZE 20
+# define FOV 30.0
+# define SIZE 10
+# define PLAYER_SIZE 4
 # define NO 0
 # define SO 1
 # define WE 2
@@ -25,10 +30,11 @@
 # define F 4
 # define C 5
 # define WALL_COLOR 0xFFFFFF
-# include <math.h>
-# include "libft.h"
-# include "mlx.h"
-# include "structures.h"
+# define degToRad(angleInDegrees) ((angleInDegrees) * M_PI / 180.0)
+# define radToDeg(angleInRadians) ((angleInRadians) * 180.0 / M_PI)
+
+// test.c
+void	ray_casting(t_env *env);
 
 // -----------------------------------------------------------------------
 // src/main.c
@@ -85,6 +91,7 @@ void	rotate_c(t_env *env);
 char	*set_spaces(char *line, t_env *env);
 void	print_map(t_env *env);
 int		convert_colors(t_env *env);
+float	distance(t_v2 player, t_v2 wall);
 
 // -----------------------------------------------------------------------
 // src/check.c
