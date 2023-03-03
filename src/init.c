@@ -6,7 +6,7 @@
 /*   By: saeby <saeby>                              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 19:57:04 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/03 23:14:07 by saeby            ###   ########.fr       */
+/*   Updated: 2023/03/03 23:59:37 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int	init_env(t_env *env)
 	env->map.height = 0;
 	env->map.ceiling = 0;
 	env->map.floor = 0;
+	env->map.wall = 0xFFFFFF;
 	env->player.pos.x = 0;
 	env->player.pos.y = 0;
 	env->player.fov = FOV;

@@ -6,7 +6,7 @@
 /*   By: saeby <saeby>                              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 19:44:58 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/03 23:14:00 by saeby            ###   ########.fr       */
+/*   Updated: 2023/03/03 23:41:39 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct s_map
 	char		*c_color;
 	int			ceiling;
 	int			floor;
+	int			wall;
 	size_t		width;
 	size_t		height;
 }				t_map;

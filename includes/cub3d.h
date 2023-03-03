@@ -6,7 +6,7 @@
 /*   By: saeby <saeby>                              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 19:44:23 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/03 23:12:37 by saeby            ###   ########.fr       */
+/*   Updated: 2023/03/04 00:18:51 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # define WIN_W 640
 # define WIN_H 480
 # define SIZE 20
-# define WALL 0xFFFFFF
+# define WALL 0x00FFFFFF
 # define WIN_NAME "Cub3D"
 # define WIN2_NAME "Cub2D"
 # define FOV 60.0
@@ -92,6 +92,11 @@ char	*set_spaces(char *line, t_env *env);
 int		is_dir(char c);
 int		set_start(t_v2 v, t_env *env);
 void	fill_pt(t_env *env, t_v2 v, int color);
+int		shade(int color, float distance);
+int		create_rgb(int r, int g, int b);
+int		get_r(int color);
+int		get_g(int color);
+int		get_b(int color);
 
 // ------------------------------------
 // src/draw.c

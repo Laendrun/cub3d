@@ -6,7 +6,7 @@
 /*   By: saeby <saeby>                              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 20:08:54 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/03 22:53:35 by saeby            ###   ########.fr       */
+/*   Updated: 2023/03/04 00:18:12 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,4 +153,41 @@ void	fill_pt(t_env *env, t_v2 v, int color)
 		}
 		i++;
 	}
+}
+
+int	shade(int color, float distance)
+{
+	int	r;
+	int	g;
+	int	b;
+
+	r = get_r(color) * (1 - distance / 255.0);
+	g = get_g(color) * (1 - distance / 255.0);
+	b = get_b(color) * (1 - distance / 255.0);
+	//printf("R: %d, G: %d, B: %d\n", r, g, b);
+	return (create_rgb(r, g, b));
+}
+
+int	get_r(int color)
+{
+	return ((color >> 16) & 0xFF);
+}
+
+int	get_g(int color)
+{
+	return ((color >> 8) & 0xFF);
+}
+
+int	get_b(int color)
+{
+	return (color & 0xFF);
+}
+
+int	create_rgb(int r, int g, int b)
+{
+	int	rgb;
+
+	rgb = 0;
+	rgb = (r << 16) | (g << 8) | b;
+	return (rgb);
 }
