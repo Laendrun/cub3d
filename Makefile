@@ -48,17 +48,15 @@ INCS = -I$(INC_DIR) -I$(LIBFT) -I$(MLX)
 LIBS = -L$(LIBFT) -lft -L$(MLX) -lmlx
 
 SRC = 	main.c \
-		hooks.c \
-		errors.c \
-		parse.c \
-		init.c \
+		error.c \
 		helpers.c \
+		init.c \
+		hooks.c \
+		parse.c \
 		draw.c \
-		check.c \
-		player_move.c \
-		is.c \
 		cast.c \
-		test.c \
+		player_moves.c \
+		debug.c
 
 OBJ := $(SRC:%.c=%.o)
 DEP := $(SRC:%.c=%.d)

@@ -1,23 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.c                                           :+:      :+:    :+:   */
+/*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saeby <saeby@student.42.fr>                +#+  +:+       +#+        */
+/*   By: saeby <saeby>                              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/01 20:03:45 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/01 20:53:09 by saeby            ###   ########.fr       */
+/*   Created: 2023/03/03 21:03:16 by saeby             #+#    #+#             */
+/*   Updated: 2023/03/03 21:03:29 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	puterr(char *s1, char *s2)
+void	print_map(t_env *env)
 {
-	while (s1 && *s1)
-		write(2, s1++, 1);
-	while (s2 && *s2)
-		write(2, s2++, 1);
-	write(2, "\n", 1);
-	return (1);
+	size_t	x;
+	size_t	y;
+
+	y = 0;
+	while (y < env->map.height)
+	{
+		x = 0;
+		while (x < env->map.width)
+		{
+			ft_printf("%c", env->mapc[x + y * env->map.width]);
+			x++;
+		}
+		y++;
+		ft_printf("\n");
+	}
 }

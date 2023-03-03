@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saeby <saeby@student.42.fr>                +#+  +:+       +#+        */
+/*   By: saeby <saeby>                              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/01 19:54:20 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/02 21:50:20 by saeby            ###   ########.fr       */
+/*   Created: 2023/03/03 20:23:38 by saeby             #+#    #+#             */
+/*   Updated: 2023/03/03 22:57:15 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	key_handler(int keycode, t_env *env)
 {
-	(void) env;
 	if (keycode == 53)
 		close_window(env);
 	else if (keycode == 13)
@@ -41,7 +40,8 @@ int	mouse_handler(int mousecode, int x, int y, t_env *env)
 
 int	close_window(t_env *env)
 {
+	(void) env;
 	write(2, "Exiting cub3d\n", 15);
-	mlx_destroy_window(env->mlx, env->win);
+	//mlx_destroy_window(env->mlx, env->win);
 	exit(0);
 }
