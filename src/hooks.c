@@ -6,7 +6,7 @@
 /*   By: saeby <saeby>                              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 20:23:38 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/04 12:46:09 by saeby            ###   ########.fr       */
+/*   Updated: 2023/03/04 14:18:02 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int	key_handler(int keycode, t_env *env)
 		rotate_cc(env);
 	else if (keycode == 2)
 		rotate_c(env);
+	else if (keycode == 46)
+		toggle_map(env);
 	else
 		ft_printf("Key: %d\n", keycode);
 	return (0);

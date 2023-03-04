@@ -60,6 +60,8 @@ SRC = 	main.c \
 		cast.c \
 		color.c \
 		player_moves.c \
+		inputs_handler.c \
+		render_utils.c \
 		debug.c
 
 OBJ := $(SRC:%.c=%.o)

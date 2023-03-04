@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw.c                                             :+:      :+:    :+:   */
+/*   render_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saeby <saeby>                              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/03 21:30:39 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/04 14:29:46 by saeby            ###   ########.fr       */
+/*   Created: 2023/03/04 14:23:57 by saeby             #+#    #+#             */
+/*   Updated: 2023/03/04 14:43:38 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	put_px(t_env *env, t_v2 v, int color)
+void	put_mm_px(t_env *env, t_v2 v, int color)
 {
 	char	*dst;
 
-	if (v.x >= 0 && v.x < WIN_W && v.y >= 0 && v.y < WIN_H)
+	if (v.x >= 0 && v.x < env->map2d.width && v.y >= 0 && \
+			v.y < env->map2d.height)
 	{
-		dst = env->addr + ((int)v.y * env->line_len \
-									+ (int)v.x * (env->bpp / 8));
+		dst = env->addr2 + ((int)v.y * env->line_len2 \
+									+ (int)v.x * (env->bpp2 / 8));
 		*(unsigned int *)dst = color;
 	}
 }
 
-void	draw_line(t_env *env, t_v4 v4, int col)
+void	draw_mm_line(t_env *env, t_v4 v4, int col)
 {
 	float	step;
 	t_v3	v;
@@ -43,45 +44,29 @@ void	draw_line(t_env *env, t_v4 v4, int col)
 	v.z = 0;
 	while (v.z < step)
 	{
-		put_px(env, (t_v2){v.x, v.y}, col);
+		put_mm_px(env, (t_v2){v.x, v.y}, col);
 		v.x = v.x + delta.x;
 		v.y = v.y + delta.y;
 		v.z++;
 	}
 }
 
-void	draw_floor(t_env *env)
-{
-	size_t	x;
-	size_t	y;
-
-	y = WIN_H / 2;
-	while (y < WIN_H)
-	{
-		x = 0;
-		while (x < WIN_W)
-		{
-			put_px(env, (t_v2){x, y}, env->map.floor);
-			x++;
-		}
-		y++;
-	}
-}
-
-void	draw_ceil(t_env *env)
+void	render_minimap(t_env *env)
 {
 	size_t	x;
 	size_t	y;
 
 	y = 0;
-	while (y < WIN_H / 2)
+	while (y < env->map2d.height)
 	{
 		x = 0;
-		while (x < WIN_W)
+		while (x < env->map2d.width)
 		{
-			put_px(env, (t_v2){x, y}, env->map.ceiling);
+			put_mm_px(env, (t_v2){x, y}, \
+				env->map2d.px[x + y * env->map2d.width]);
 			x++;
 		}
 		y++;
 	}
+	put_mm_px(env, env->player.pos, 0x00FF00);
 }

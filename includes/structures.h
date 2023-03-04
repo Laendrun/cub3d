@@ -6,7 +6,7 @@
 /*   By: saeby <saeby>                              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 19:44:58 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/04 12:54:34 by saeby            ###   ########.fr       */
+/*   Updated: 2023/03/04 14:37:40 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,18 +87,18 @@ typedef struct s_env
 {
 	void		*mlx;
 	void		*win;
-	void		*win2;
 	void		*img;
-	void		*img2;
 	char		*addr;
-	char		*addr2;
 	int			bpp;
-	int			bpp2;
 	int			line_len;
-	int			line_len2;
 	int			endian;
+	void		*img2;
+	char		*addr2;
+	int			bpp2;
+	int			line_len2;
 	int			endian2;
 	char		*mapc;
+	int			minimap;
 	t_map		map;
 	t_map2d		map2d;
 	t_player	player;

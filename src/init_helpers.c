@@ -6,7 +6,7 @@
 /*   By: saeby <saeby>                              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 13:27:31 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/04 13:28:10 by saeby            ###   ########.fr       */
+/*   Updated: 2023/03/04 14:46:30 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	fill_map2d(t_env *env, t_v2 v)
 	if (env->mapc[(int)v.x + (int)v.y * env->map.width] == '0')
 		fill_pt(env, (t_v2){(int)v.x * SIZE, (int)v.y * SIZE}, env->map.floor);
 	if (env->mapc[(int)v.x + (int)v.y * env->map.width] == ' ')
-		fill_pt(env, (t_v2){(int)v.x * SIZE, (int)v.y * SIZE}, 0x0);
+		fill_pt(env, (t_v2){(int)v.x * SIZE, (int)v.y * SIZE}, env->map.ceiling);
 }
 
 int	set_start(t_v2 v, t_env *env)

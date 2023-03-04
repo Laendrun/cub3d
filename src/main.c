@@ -6,7 +6,7 @@
 /*   By: saeby <saeby>                              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 19:44:02 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/04 12:45:31 by saeby            ###   ########.fr       */
+/*   Updated: 2023/03/04 14:45:04 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,26 +29,12 @@ int	main(int ac, char **av)
 
 int	render(t_env *env)
 {
-	size_t	x;
-	size_t	y;
-
 	draw_floor(env);
 	draw_ceil(env);
-	y = 0;
-	while (y < env->map2d.height)
-	{
-		x = 0;
-		while (x < env->map2d.width)
-		{
-			put_px(env, (t_v2){x, y}, \
-				env->map2d.px[x + y * env->map2d.width], 2);
-			x++;
-		}
-		y++;
-	}
+	render_minimap(env);
 	raycasting(env);
-	put_px(env, env->player.pos, 0x00FF00, 2);
-	mlx_put_image_to_window(env->mlx, env->win2, env->img2, 0, 0);
 	mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);
+	if (env->minimap > 0)
+		mlx_put_image_to_window(env->mlx, env->win, env->img2, 0, 0);
 	return (0);
 }

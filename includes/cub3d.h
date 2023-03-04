@@ -6,7 +6,7 @@
 /*   By: saeby <saeby>                              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 19:44:23 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/04 13:27:47 by saeby            ###   ########.fr       */
+/*   Updated: 2023/03/04 14:41:56 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,11 @@ char	*set_spaces(char *line, t_env *env);
 int		is_dir(char c);
 
 // ------------------------------------
+// src/inputs_handler.c
+// ------------------------------------
+void	toggle_map(t_env *env);
+
+// ------------------------------------
 // src/init_helpers.c
 // ------------------------------------
 int		set_start(t_v2 v, t_env *env);
@@ -118,10 +123,17 @@ void	fill_map2d(t_env *env, t_v2 v);
 // ------------------------------------
 // src/draw.c
 // ------------------------------------
-void	put_px(t_env *env, t_v2 v, int color, int win);
-void	draw_line(t_env *env, t_v4 v4, int col, int win);
+void	put_px(t_env *env, t_v2 v, int color);
+void	draw_line(t_env *env, t_v4 v4, int col);
 void	draw_ceil(t_env *env);
 void	draw_floor(t_env *env);
+
+// ------------------------------------
+// src/render_utils.c
+// ------------------------------------
+void	render_minimap(t_env *env);
+void	put_mm_px(t_env *env, t_v2 v, int color);
+void	draw_mm_line(t_env *env, t_v4 v4, int col);
 
 // ------------------------------------
 // src/debug.c
