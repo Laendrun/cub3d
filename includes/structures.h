@@ -6,7 +6,7 @@
 /*   By: saeby <saeby>                              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 19:44:58 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/03 23:41:39 by saeby            ###   ########.fr       */
+/*   Updated: 2023/03/04 12:54:34 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,26 @@ typedef struct s_v4
 	float		d;
 }				t_v4;
 
+typedef struct s_raycast
+{
+	float		a_i;
+}				t_raycast;
+
+typedef struct s_ray
+{
+	float	angle;
+	size_t	count;
+	float	cos;
+	float	sin;
+	int		wall;
+	float	wall_h;
+	float	dist;
+	t_v2	pos;
+}			t_ray;
+
 typedef struct s_player
 {
-	float		s_angle;
-	float		c_angle;
+	float		angle;
 	float		fov;
 	float		halffov;
 	t_v2		pos;
@@ -83,11 +99,10 @@ typedef struct s_env
 	int			endian;
 	int			endian2;
 	char		*mapc;
-	float		*px;
-	float		*py;
 	t_map		map;
 	t_map2d		map2d;
 	t_player	player;
+	t_raycast	raycast;
 }				t_env;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: saeby <saeby>                              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 21:30:39 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/03 22:59:21 by saeby            ###   ########.fr       */
+/*   Updated: 2023/03/04 12:44:29 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ void	put_px(t_env *env, t_v2 v, int color, int win)
 									+ (int)v.x * (env->bpp / 8));
 		*(unsigned int *)dst = color;
 	}
-	if (win == 2 && v.x >= 0 && v.x < env->map.width * SIZE && v.y >= 0 && v.y < env->map.height * SIZE)
+	if (win == 2 && v.x >= 0 && v.x < env->map.width * SIZE && \
+				v.y >= 0 && v.y < env->map.height * SIZE)
 	{
 		dst = env->addr2 + ((int)v.y * env->line_len2 \
 									+ (int)v.x * (env->bpp2 / 8));

@@ -6,7 +6,7 @@
 /*   By: saeby <saeby>                              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 19:44:23 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/04 00:18:51 by saeby            ###   ########.fr       */
+/*   Updated: 2023/03/04 13:27:47 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # define WE 3
 # define F 4
 # define C 5
-# define WIN_W 640
-# define WIN_H 480
+# define WIN_W 1280
+# define WIN_H 720
 # define SIZE 20
 # define WALL 0x00FFFFFF
 # define WIN_NAME "Cub3D"
@@ -47,9 +47,26 @@ void	raycasting(t_env *env);
 // src/error.c
 // ------------------------------------
 int		puterr(char *s1, char *s2);
-int		line_nok(char *line, t_env *env);
+
+// ------------------------------------
+// src/map_error.c
+// ------------------------------------
 int		check_map(t_env *env);
+
+// ------------------------------------
+// src/line_error.c
+// ------------------------------------
+int		line_nok(char *line, t_env *env);
 int		space_around(t_v2 v, t_env *env);
+
+// ------------------------------------
+// src/color.c
+// ------------------------------------
+int		shade(int color, float distance);
+int		create_rgb(int r, int g, int b);
+int		get_r(int color);
+int		get_g(int color);
+int		get_b(int color);
 
 // ------------------------------------
 // src/init.c
@@ -90,13 +107,13 @@ int		get_color(int dir, char *line, t_env *env);
 int		convert_color(t_env *env);
 char	*set_spaces(char *line, t_env *env);
 int		is_dir(char c);
+
+// ------------------------------------
+// src/init_helpers.c
+// ------------------------------------
 int		set_start(t_v2 v, t_env *env);
 void	fill_pt(t_env *env, t_v2 v, int color);
-int		shade(int color, float distance);
-int		create_rgb(int r, int g, int b);
-int		get_r(int color);
-int		get_g(int color);
-int		get_b(int color);
+void	fill_map2d(t_env *env, t_v2 v);
 
 // ------------------------------------
 // src/draw.c

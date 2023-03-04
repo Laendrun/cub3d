@@ -49,12 +49,16 @@ LIBS = -L$(LIBFT) -lft -L$(MLX) -lmlx
 
 SRC = 	main.c \
 		error.c \
+		map_error.c \
+		line_error.c \
 		helpers.c \
 		init.c \
+		init_helpers.c \
 		hooks.c \
 		parse.c \
 		draw.c \
 		cast.c \
+		color.c \
 		player_moves.c \
 		debug.c
 

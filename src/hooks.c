@@ -6,7 +6,7 @@
 /*   By: saeby <saeby>                              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 20:23:38 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/03 22:57:15 by saeby            ###   ########.fr       */
+/*   Updated: 2023/03/04 12:46:09 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,6 @@ int	close_window(t_env *env)
 {
 	(void) env;
 	write(2, "Exiting cub3d\n", 15);
-	//mlx_destroy_window(env->mlx, env->win);
+	mlx_destroy_window(env->mlx, env->win);
 	exit(0);
 }

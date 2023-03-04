@@ -6,7 +6,7 @@
 /*   By: saeby <saeby>                              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 19:57:04 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/03 23:59:37 by saeby            ###   ########.fr       */
+/*   Updated: 2023/03/04 12:49:06 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int	init_cub3d(t_env *env)
 		return (1);
 	if (init_map(env))
 		return (1);
-	// print_map(env);
 	if (init_mlx(env))
 		return (1);
 	return (0);
@@ -52,8 +51,6 @@ int	init_map(t_env *env)
 
 int	init_env(t_env *env)
 {
-	env->px = malloc(sizeof(float));
-	env->py = malloc(sizeof(float));
 	env->map.width = 0;
 	env->map.height = 0;
 	env->map.ceiling = 0;
@@ -73,8 +70,10 @@ int	init_mlx(t_env *env)
 	env->img = mlx_new_image(env->mlx, WIN_W, WIN_H);
 	env->addr = mlx_get_data_addr(env->img, &env->bpp, \
 									&env->line_len, &env->endian);
-	env->win2 = mlx_new_window(env->mlx, env->map.width * SIZE, env->map.height * SIZE, WIN2_NAME);
-	env->img2 = mlx_new_image(env->mlx, env->map.width * SIZE, env->map.height * SIZE);
+	env->win2 = mlx_new_window(env->mlx, env->map.width * SIZE, \
+								env->map.height * SIZE, WIN2_NAME);
+	env->img2 = mlx_new_image(env->mlx, env->map.width * SIZE, \
+											env->map.height * SIZE);
 	env->addr2 = mlx_get_data_addr(env->img2, &env->bpp2, \
 									&env->line_len2, &env->endian2);
 	mlx_hook(env->win, 4, 0, mouse_handler, env);
@@ -95,19 +94,15 @@ int	init_map2d(t_env *env)
 	env->map2d.size = env->map2d.width * env->map2d.height;
 	env->map2d.px = (int *) malloc(env->map2d.size * sizeof(int));
 	if (!env->map2d.px)
-		return (puterr("Error\nMemory allocation error when allocating 2D map.", NULL));
+		return (puterr("Error\n", \
+				"Memory allocation error when allocating 2D map."));
 	y = 0;
 	while (y < env->map.height)
 	{
 		x = 0;
 		while (x < env->map.width)
 		{
-			if (env->mapc[x + y * env->map.width] == '1')
-				fill_pt(env, (t_v2){x * SIZE, y * SIZE}, WALL);
-			if (env->mapc[x + y * env->map.width] == '0')
-				fill_pt(env, (t_v2){x * SIZE, y * SIZE}, env->map.floor);
-			if (env->mapc[x + y * env->map.width] == ' ')
-				fill_pt(env, (t_v2){x * SIZE, y * SIZE}, 0x0);
+			fill_map2d(env, (t_v2){x, y});
 			x++;
 		}
 		y++;
