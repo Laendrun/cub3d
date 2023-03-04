@@ -6,7 +6,7 @@
 /*   By: saeby <saeby>                              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 19:57:04 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/04 14:44:50 by saeby            ###   ########.fr       */
+/*   Updated: 2023/03/04 17:51:46 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,15 @@ int	init_cub3d(t_env *env)
 	close(fd);
 	if (init_env(env))
 		return (1);
+	if (init_projection(env))
+		return (1);
 	if (init_map(env))
 		return (1);
 	if (init_mlx(env))
 		return (1);
+	if (init_sprite(env))
+		return (1);
+	// draw_texture(NULL, env);
 	return (0);
 }
 

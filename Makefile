@@ -53,6 +53,7 @@ SRC = 	main.c \
 		line_error.c \
 		helpers.c \
 		init.c \
+		init2.c \
 		init_helpers.c \
 		hooks.c \
 		parse.c \

@@ -6,7 +6,7 @@
 /*   By: saeby <saeby>                              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 19:44:23 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/04 14:41:56 by saeby            ###   ########.fr       */
+/*   Updated: 2023/03/04 16:26:40 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@
 # include "libft.h"
 # include "mlx.h"
 # include "structures.h"
+
+void	draw_texture(t_ray *ray, t_env *env);
 
 // ------------------------------------
 // src/main.c
@@ -76,6 +78,12 @@ int		init_env(t_env *env);
 int		init_mlx(t_env *env);
 int		init_map(t_env *env);
 int		init_map2d(t_env *env);
+
+// ------------------------------------
+// src/init2.c
+// ------------------------------------
+int		init_projection(t_env *env);
+int		init_sprite(t_env *env);
 
 // ------------------------------------
 // src/hooks.c

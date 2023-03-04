@@ -6,7 +6,7 @@
 /*   By: saeby <saeby>                              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 19:44:58 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/04 14:37:40 by saeby            ###   ########.fr       */
+/*   Updated: 2023/03/04 17:51:35 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,15 @@ typedef struct s_v4
 	float		d;
 }				t_v4;
 
+typedef struct s_proj
+{
+	size_t		width;
+	size_t		height;
+	size_t		half_width;
+	size_t		half_height;
+	int			scale;
+}				t_proj;
+
 typedef struct s_raycast
 {
 	float		a_i;
@@ -59,10 +68,22 @@ typedef struct s_player
 	t_v2		pos;
 }				t_player;
 
+typedef struct s_texture
+{
+	void		*img;
+	char		*addr;
+	int			bpp;
+	int			line_len;
+	int			endian;
+	int			width;
+	int			height;
+}				t_texture;
+
 typedef struct s_map
 {
 	char		*path;
 	char		*no_path;
+	t_texture	no_sp;
 	char		*so_path;
 	char		*we_path;
 	char		*ea_path;
@@ -103,6 +124,7 @@ typedef struct s_env
 	t_map2d		map2d;
 	t_player	player;
 	t_raycast	raycast;
+	t_proj		proj;
 }				t_env;
 
 #endif
