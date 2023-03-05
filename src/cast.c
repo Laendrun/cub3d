@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cast.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saeby <saeby>                              +#+  +:+       +#+        */
+/*   By: saeby <saeby@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 21:46:00 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/04 17:55:14 by saeby            ###   ########.fr       */
+/*   Updated: 2023/03/05 11:44:43 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,18 @@ static void	set_ray_pos(t_ray *ray, t_env *env)
 
 void	draw_texture(t_ray *ray, t_env *env)
 {
-	float	textXPos = (int)(env->map.no_sp.width * (ray->pos.x + ray->pos.y)) % (int)env->map.no_sp.width;
+	int	textXPos = floorf((int)(env->map.no_sp.width * (ray->pos.x + ray->pos.y)) % env->map.no_sp.width);
 	float y = env->proj.half_height - ray->wall_h;
 	float yIncr = (ray->wall_h * 2) / env->map.no_sp.height;
 	int i = 0;
-	int color;
+	char	*dst;
+	unsigned int color;
 
 	while (i < env->map.no_sp.height)
 	{
-		color = *(unsigned int *)env->map.no_sp.addr + ((int)i * env->map.no_sp.line_len + (int)textXPos * env->map.no_sp.bpp);
-		draw_line(env, (t_v4){ray->count, y, ray->count, y + (yIncr + 0.5)}, color);
+		dst = env->map.no_sp.addr + ((int)i * env->map.no_sp.line_len + textXPos * env->map.no_sp.bpp / 8);
+		color = *(unsigned int *)dst;
+		draw_line(env, (t_v4){ray->count, y, ray->count, y + yIncr}, color);
 		y += yIncr;
 		i++;
 	}
@@ -48,10 +50,10 @@ static void	render_slice(t_ray *ray, t_env *env)
 {
 	draw_line(env, (t_v4){ray->count, 0, ray->count, env->proj.half_height - \
 				ray->wall_h}, env->map.ceiling);
-	draw_line(env, (t_v4){ray->count, env->proj.half_height - ray->wall_h, \
-				ray->count, env->proj.half_height + ray->wall_h}, \
-				shade(env->map.wall, ray->dist));
-	// draw_texture(ray, env);
+	// draw_line(env, (t_v4){ray->count, env->proj.half_height - ray->wall_h, \
+	// 			ray->count, env->proj.half_height + ray->wall_h}, \
+	// 			shade(env->map.wall, ray->dist));
+	draw_texture(ray, env);
 	draw_line(env, (t_v4){ray->count, env->proj.half_height + ray->wall_h, \
 				ray->count, env->proj.half_height + ray->wall_h}, \
 				env->map.floor);
@@ -62,7 +64,7 @@ void	raycasting(t_env *env)
 	t_ray	ray;
 
 	ray.angle = env->player.angle - env->player.halffov;
-	env->raycast.a_i = env->player.fov / WIN_W;
+	env->raycast.a_i = env->player.fov / env->proj.width;
 	ray.count = 0;
 	while (ray.count < env->proj.width)
 	{
@@ -75,7 +77,7 @@ void	raycasting(t_env *env)
 		ray.dist *= cosf(degToRad(ray.angle - env->player.angle));
 		if (ray.dist > 255)
 			ray.dist = 255.0;
-		ray.wall_h = env->proj.height * 5 / ray.dist;
+		ray.wall_h = env->proj.height / ray.dist;
 		render_slice(&ray, env);
 		draw_mm_line(env, (t_v4){env->player.pos.x, env->player.pos.y, \
 					ray.pos.x, ray.pos.y}, create_rgb(90, 230, 127));
