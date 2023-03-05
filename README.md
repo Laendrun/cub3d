@@ -21,6 +21,8 @@ And also based on these sources :
 - [griffpatch - Scrath Raycasting tutorial](https://youtube.com/playlist?list=PLy4zsTUHwGJKolO9Ko_j6IStFIJnTYBul)
 	- This one is to better understand principles, it's way harder to do everything he does in C but the principles stay the same. It gives a visual reprensentation and a quick and understandable way of implementing ray casting.
 
+- [Lodev's raycasting](https://lodev.org/cgtutor/raycasting.html)
+
 ## Compiling
 
 ```sh

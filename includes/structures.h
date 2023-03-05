@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saeby <saeby>                              +#+  +:+       +#+        */
+/*   By: saeby <saeby@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 19:44:58 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/04 17:51:35 by saeby            ###   ########.fr       */
+/*   Updated: 2023/03/05 14:59:49 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef struct s_ray
 	int		wall;
 	float	wall_h;
 	float	dist;
+	int		side;
 	t_v2	pos;
 }			t_ray;
 
@@ -83,7 +84,7 @@ typedef struct s_map
 {
 	char		*path;
 	char		*no_path;
-	t_texture	no_sp;
+	t_texture	*textures;
 	char		*so_path;
 	char		*we_path;
 	char		*ea_path;
@@ -120,6 +121,7 @@ typedef struct s_env
 	int			endian2;
 	char		*mapc;
 	int			minimap;
+	int			texture_id;
 	t_map		map;
 	t_map2d		map2d;
 	t_player	player;

@@ -6,11 +6,12 @@
 /*   By: saeby <saeby@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 21:46:00 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/05 12:32:42 by saeby            ###   ########.fr       */
+/*   Updated: 2023/03/05 15:02:33 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+# define TEXT_IDX 3
 
 static void	set_ray_pos(t_ray *ray, t_env *env)
 {
@@ -25,20 +26,32 @@ static void	set_ray_pos(t_ray *ray, t_env *env)
 }
 
 // get texture color based on x y coordinates
-// color = *(unsigned int *)env->map.no_sp.addr + ((int)y1 * env->map.no_sp.line_len + (int)x1 * env->map.no_sp.bpp / 8);
+// char *dst;
+// unsigned int color;
+// dst = env->map.no_sp.addr + ((int)y1 * env->map.no_sp.line_len + (int)x1 * env->map.no_sp.bpp / 8);
+// color = *(unsigned int *)dst
 
 void	draw_texture(t_ray *ray, t_env *env)
 {
-	int	textXPos = floorf((int)(env->map.no_sp.width * ((ray->pos.x / SIZE) + (ray->pos.y / SIZE))) % env->map.no_sp.width);
+	// if ((int)env->player.angle % 360 > 0 && (int)env->player.angle % 360 < 180)
+	// 	texture_id = 2;
+	// else if ((int)env->player.angle % 360 > 180 && (int)env->player.angle % 360 < 360)
+	// 	texture_id = 0;
+	// else if ((int)env->player.angle % 360 > 270 && (int)env->player.angle % 360 < 90)
+	// 	texture_id = 1;
+	// else if ((int)env->player.angle % 360 > 90 && (int)env->player.angle % 360 < 270)
+	// 	texture_id = 3;
+
+	int	textXPos = floorf((int)(env->map.textures[env->texture_id].width * ((ray->pos.x / SIZE) + (ray->pos.y / SIZE))) % env->map.textures[env->texture_id].width);
 	float y = env->proj.half_height - ray->wall_h;
-	float yIncr = (ray->wall_h * 2) / env->map.no_sp.height;
+	float yIncr = (ray->wall_h * 2) / env->map.textures[env->texture_id].height;
 	int i = 0;
 	char	*dst;
 	unsigned int color;
 
-	while (i < env->map.no_sp.height)
+	while (i < env->map.textures[env->texture_id].height)
 	{
-		dst = env->map.no_sp.addr + ((int)i * env->map.no_sp.line_len + textXPos * env->map.no_sp.bpp / 8);
+		dst = env->map.textures[env->texture_id].addr + ((int)i * env->map.textures[env->texture_id].line_len + textXPos * env->map.textures[env->texture_id].bpp / 8);
 		color = *(unsigned int *)dst;
 		draw_line(env, (t_v4){ray->count, y, ray->count, y + (yIncr + 0.5)}, shade(color, ray->dist));
 		y += yIncr;
@@ -71,6 +84,8 @@ void	raycasting(t_env *env)
 		ray.pos = env->player.pos;
 		ray.cos = cosf(degToRad(ray.angle));
 		ray.sin = sinf(degToRad(ray.angle));
+		if (ray.sin >= 0)
+			ray.side = 1;
 		set_ray_pos(&ray, env);
 		ray.dist = sqrt(pow((env->player.pos.x / SIZE) - (ray.pos.x / SIZE), 2) + \
 						pow((env->player.pos.y / SIZE) - (ray.pos.y / SIZE), 2));

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saeby <saeby>                              +#+  +:+       +#+        */
+/*   By: saeby <saeby@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 19:57:04 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/04 17:51:46 by saeby            ###   ########.fr       */
+/*   Updated: 2023/03/05 14:20:52 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ int	init_env(t_env *env)
 	env->map.ceiling = 0;
 	env->map.floor = 0;
 	env->minimap = -1;
+	env->texture_id = 0;
+	env->map.textures = malloc(4 * sizeof(t_texture));
 	env->map.wall = 0xFFFFFF;
 	env->player.pos.x = 0;
 	env->player.pos.y = 0;
@@ -79,9 +81,10 @@ int	init_mlx(t_env *env)
 	env->img2 = mlx_new_image(env->mlx, env->map2d.width, env->map2d.height);
 	env->addr2 = mlx_get_data_addr(env->img2, &env->bpp2, \
 									&env->line_len2, &env->endian2);
-	mlx_hook(env->win, 4, 0, mouse_handler, env);
+	//mlx_hook(env->win, 4, 0, mouse_handler, env);
 	mlx_hook(env->win, 2, 1L << 0, key_handler, env);
 	mlx_hook(env->win, 17, 1L << 0, close_window, env);
+	mlx_hook(env->win, 6, 0, mouse_handler, env);
 	return (0);
 }
 

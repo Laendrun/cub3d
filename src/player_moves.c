@@ -6,7 +6,7 @@
 /*   By: saeby <saeby@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 22:21:20 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/05 12:29:45 by saeby            ###   ########.fr       */
+/*   Updated: 2023/03/05 14:12:04 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,18 @@ void	backward(t_env *env)
 
 void	rotate_cc(t_env *env)
 {
+	// if (env->player.angle - 1 == 0)
+	// 	env->player.angle = 359;
+	// else
+	// 	env->player.angle--;
 	env->player.angle -= 3;
 }
 
 void	rotate_c(t_env *env)
 {
+	// if (env->player.angle + 1 == 360)
+	// 	env->player.angle = 1;
+	// else
+	// 	env->player.angle++;
 	env->player.angle += 3;
 }
