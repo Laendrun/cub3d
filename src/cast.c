@@ -6,7 +6,7 @@
 /*   By: saeby <saeby@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 21:46:00 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/05 11:44:43 by saeby            ###   ########.fr       */
+/*   Updated: 2023/03/05 12:32:42 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	set_ray_pos(t_ray *ray, t_env *env)
 
 void	draw_texture(t_ray *ray, t_env *env)
 {
-	int	textXPos = floorf((int)(env->map.no_sp.width * (ray->pos.x + ray->pos.y)) % env->map.no_sp.width);
+	int	textXPos = floorf((int)(env->map.no_sp.width * ((ray->pos.x / SIZE) + (ray->pos.y / SIZE))) % env->map.no_sp.width);
 	float y = env->proj.half_height - ray->wall_h;
 	float yIncr = (ray->wall_h * 2) / env->map.no_sp.height;
 	int i = 0;
@@ -40,7 +40,7 @@ void	draw_texture(t_ray *ray, t_env *env)
 	{
 		dst = env->map.no_sp.addr + ((int)i * env->map.no_sp.line_len + textXPos * env->map.no_sp.bpp / 8);
 		color = *(unsigned int *)dst;
-		draw_line(env, (t_v4){ray->count, y, ray->count, y + yIncr}, color);
+		draw_line(env, (t_v4){ray->count, y, ray->count, y + (yIncr + 0.5)}, shade(color, ray->dist));
 		y += yIncr;
 		i++;
 	}
@@ -72,8 +72,8 @@ void	raycasting(t_env *env)
 		ray.cos = cosf(degToRad(ray.angle));
 		ray.sin = sinf(degToRad(ray.angle));
 		set_ray_pos(&ray, env);
-		ray.dist = sqrt(pow(env->player.pos.x - ray.pos.x, 2) + \
-						pow(env->player.pos.y - ray.pos.y, 2));
+		ray.dist = sqrt(pow((env->player.pos.x / SIZE) - (ray.pos.x / SIZE), 2) + \
+						pow((env->player.pos.y / SIZE) - (ray.pos.y / SIZE), 2));
 		ray.dist *= cosf(degToRad(ray.angle - env->player.angle));
 		if (ray.dist > 255)
 			ray.dist = 255.0;

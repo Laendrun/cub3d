@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_moves.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saeby <saeby>                              +#+  +:+       +#+        */
+/*   By: saeby <saeby@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 22:21:20 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/04 13:24:45 by saeby            ###   ########.fr       */
+/*   Updated: 2023/03/05 12:29:45 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,17 @@ void	forward(t_env *env)
 {
 	float	p_cos;
 	float	p_sin;
+	float	new_x;
+	float	new_y;
 
 	p_cos = cosf(degToRad(env->player.angle));
 	p_sin = sinf(degToRad(env->player.angle));
-	if (env->map2d.px[(int)(env->player.pos.x + p_cos) + \
-		(int)(env->player.pos.y + p_sin) * env->map2d.width] == env->map.floor)
+	new_x = env->player.pos.x + p_cos * 2;
+	new_y = env->player.pos.y + p_sin * 2;
+	if (env->map2d.px[(int)new_x + (int)new_y * env->map2d.width] == env->map.floor)
 	{
-		env->player.pos.x += p_cos;
-		env->player.pos.y += p_sin;
+		env->player.pos.x = new_x;
+		env->player.pos.y = new_y;
 	}
 }
 
@@ -31,14 +34,17 @@ void	backward(t_env *env)
 {
 	float	p_cos;
 	float	p_sin;
+	float	new_x;
+	float	new_y;
 
 	p_cos = cosf(degToRad(env->player.angle));
 	p_sin = sinf(degToRad(env->player.angle));
-	if (env->map2d.px[(int)(env->player.pos.x - p_cos) + \
-		(int)(env->player.pos.y - p_sin) * env->map2d.width] == env->map.floor)
+	new_x = env->player.pos.x - p_cos * 2;
+	new_y = env->player.pos.y - p_sin * 2;
+	if (env->map2d.px[(int)new_x + (int)new_y * env->map2d.width] == env->map.floor)
 	{
-		env->player.pos.x -= p_cos;
-		env->player.pos.y -= p_sin;
+		env->player.pos.x = new_x;
+		env->player.pos.y = new_y;
 	}
 }
 

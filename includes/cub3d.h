@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saeby <saeby>                              +#+  +:+       +#+        */
+/*   By: saeby <saeby@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 19:44:23 by saeby             #+#    #+#             */
-/*   Updated: 2023/03/04 16:26:40 by saeby            ###   ########.fr       */
+/*   Updated: 2023/03/05 12:31:27 by saeby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,11 @@
 # define WE 3
 # define F 4
 # define C 5
-# define WIN_W 1280
-# define WIN_H 720
-# define SIZE 20
+# define WIN_W 640
+# define WIN_H 480
+// # define WIN_W 1280
+// # define WIN_H 720
+# define SIZE 10
 # define WALL 0x00FFFFFF
 # define WIN_NAME "Cub3D"
 # define WIN2_NAME "Cub2D"

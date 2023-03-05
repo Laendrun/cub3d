@@ -1,4 +1,4 @@
-NO ./textures/no_wall2.xpm
+NO ./textures/no_wall.xpm
 SO ./textures/so_wall.xpm
 WE ./textures/we_wall.xpm
 EA ./textures/ea_wall.xpm
